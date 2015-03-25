@@ -6,7 +6,25 @@ This meteor package is a wrapper of NPM package twitter
 See https://www.npmjs.com/package/twitter
 
 # Quick Start
-Note: This package is designed for server-side usage only.
+Add package
+
+    meteor add lablancas:twitter
+
+Store Twitter App Settings in /path/to/your/app/settings.json
+
+    {
+
+        "twitter_consumer_key": "Your App Consumer Key",
+        "twitter_consumer_secret": "Your App Consumer Secret",
+        "twitter_access_token_key": "Your App Token Key",
+        "twitter_access_token_secret": "Your App Token Secret"
+    }
+
+Start meteor with your settings
+    
+    meteor --settings /path/to/your/app/settings.json
+
+Server-side code example
 
     var options = {
         consumer_key: Meteor.settings.twitter_consumer_key,
@@ -25,22 +43,7 @@ Note: This package is designed for server-side usage only.
 
     });
     
-# Installation
-meteor add lablancas:twitter
 
-Store Twitter App Settings in /path/to/your/app/settings.json
-
-    {
-
-        "twitter_consumer_key": "Your App Consumer Key",
-        "twitter_consumer_secret": "Your App Consumer Secret",
-        "twitter_access_token_key": "Your App Token Key",
-        "twitter_access_token_secret": "Your App Token Secret"
-    }
-
-Start meteor with your settings
-    
-    meteor --settings /path/to/your/app/settings.json
 
 # Twitter Functions
 
@@ -62,7 +65,7 @@ Example, lets get a list of favorites:
     
     var client = new Twitter(options);
     
-    Twitter.get(client, 'favorites/list', function(error, tweets, response){
+    Twitter.getAsync(client, 'favorites/list', function(error, tweets, response){
       if(error) throw error;
       console.log(tweets);  // The favorites. 
       console.log(response);  // Raw response object. 
@@ -79,7 +82,7 @@ How about an example that passes parameters? Let's tweet something:
     
     var client = new Twitter(options);
     
-    Twitter.post(client, 'statuses/update', {status: 'I Love Twitter'},  function(error, tweet, response){
+    Twitter.postAsync(client, 'statuses/update', {status: 'I Love Twitter'},  function(error, tweet, response){
       if(error) throw error;
       console.log(tweet);  // Tweet body. 
       console.log(response);  // Raw response object. 
@@ -97,7 +100,7 @@ Using the stream convenience method, you to open and manipulate data via a strea
     
     var client = new Twitter(options);
     
-    Twitter.stream(client, 'statuses/filter', {track: 'javascript'}, function(stream) {
+    Twitter.streamAsync(client, 'statuses/filter', {track: 'javascript'}, function(stream) {
       stream.on('data', function(tweet) {
         console.log(tweet.text);
       });
