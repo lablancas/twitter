@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lablancas/pubsub.svg)](https://travis-ci.org/lablancas/twitter)
+
 # Preface
 This meteor package is a wrapper of NPM package twitter
 
