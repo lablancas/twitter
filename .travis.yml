@@ -2,5 +2,5 @@ language: node_js
 node_js:
   - "0.12"
 before_install:
-  - "npm install -g twitter"
+  - "cd .npm; cp npm-shrinkwrap.json package.json; npm install"
   - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-meteor-packages/master/configure.sh | /bin/sh"
