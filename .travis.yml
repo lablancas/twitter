@@ -1,6 +1,7 @@
 language: node_js
+sudo: required
 node_js:
-  - "0.10"
+  - "0.12"
 before_install:
   - "cwd=`pwd`; cd .npm/package/; cp npm-shrinkwrap.json package.json; npm install; cd $cwd"
   - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-meteor-packages/master/configure.sh | /bin/sh"
